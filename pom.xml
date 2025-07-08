@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (C) 2025 Julien Viet
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.julienviet</groupId>
+    <artifactId>parent</artifactId>
+    <version>1</version>
+  </parent>
+
+  <artifactId>protobuf-parent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+
+  <name>Protobuf Parent</name>
+  <url>https://github.com/vietj/protobuf</url>
+  <description>Modern protobuf library for</description>
+
+  <packaging>pom</packaging>
+
+  <scm>
+    <connection>scm:git:git@github.com:vietj/protobuf.git</connection>
+    <developerConnection>scm:git:git@github.com:vietj/protobuf.git</developerConnection>
+    <url>git@github.com:vietj/protobuf.git</url>
+  </scm>
+
+  <developers>
+    <developer>
+      <name>Julien Viet</name>
+      <email>julien@julienviet.com</email>
+    </developer>
+  </developers>
+
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.release>11</maven.compiler.release>
+    <protoc.version>4.29.3</protoc.version>
+    <protobuf.version>4.29.3</protobuf.version>
+    <jmh.version>1.37</jmh.version>
+    <jprotoc.version>1.2.2</jprotoc.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>io.vertx</groupId>
+        <artifactId>vertx-dependencies</artifactId>
+        <version>5.0.3</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.google.protobuf</groupId>
+        <artifactId>protobuf-java</artifactId>
+        <version>${protobuf.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.protobuf</groupId>
+        <artifactId>protobuf-java-util</artifactId>
+        <version>${protobuf.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.13.1</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.openjdk.jmh</groupId>
+        <artifactId>jmh-core</artifactId>
+        <version>${jmh.version}</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <modules>
+    <module>protobuf-schema</module>
+    <module>protobuf-lang</module>
+    <module>protobuf-extension</module>
+    <module>protobuf-protoc-plugin</module>
+    <module>protobuf-core</module>
+    <module>protobuf-codegen</module>
+    <module>protobuf-it</module>
+  </modules>
+
+  <build>
+    <extensions>
+      <extension>
+        <groupId>kr.motd.maven</groupId>
+        <artifactId>os-maven-plugin</artifactId>
+        <version>1.7.1</version>
+      </extension>
+    </extensions>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>io.github.ascopes</groupId>
+          <artifactId>protobuf-maven-plugin</artifactId>
+          <version>3.6.1</version>
+          <configuration>
+            <protocVersion>${protoc.version}</protocVersion>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+</project>

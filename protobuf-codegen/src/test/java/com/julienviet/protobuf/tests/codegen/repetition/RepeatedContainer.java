@@ -1,0 +1,39 @@
+/*
+ * Copyright (C) 2025 Julien Viet
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+package com.julienviet.protobuf.tests.codegen.repetition;
+
+import com.julienviet.protobuf.lang.ProtoField;
+import com.julienviet.protobuf.lang.ProtoMessage;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@ProtoMessage
+public class RepeatedContainer {
+
+  private List<String> stringsField = new ArrayList<>();
+
+  @ProtoField(number = 1, protoName = "strings_field")
+  public List<String> getStringsField() {
+    return stringsField;
+  }
+
+  public void setStringsField(List<String> s) {
+    this.stringsField = s;
+  }
+
+}

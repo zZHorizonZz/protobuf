@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package com.julienviet.protobuf.tests.core.datatypes;
+
+option java_package = "com.julienviet.protobuf.tests.core.support.datatypes";
+option java_outer_classname = "DataTypesProto";
+
+message ScalarTypes {
+  int32 int32 = 1;
+  uint32 uint32 = 2;
+  sint32 sint32 = 3;
+  int64 int64 = 4;
+  uint64 uint64 = 5;
+  sint64 sint64 = 6;
+  bool bool = 7;
+  fixed32 fixed32 = 8;
+  sfixed32 sfixed32 = 9;
+  float _float = 10;
+  fixed64 fixed64 = 11;
+  sfixed64 sfixed64 = 12;
+  double _double = 13;
+  string string = 14;
+  bytes bytes = 15;
+}
+message EnumTypes {
+  Enumerated _enum = 1;
+}
+enum Enumerated {
+  zero = 0;
+  one = 1;
+  two = 2;
+  three = 3;
+}

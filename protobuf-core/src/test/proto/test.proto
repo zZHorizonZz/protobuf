@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package com.julienviet.protobuf.tests.core.basic;
+
+//
+//option java_multiple_files = true;
+option java_package = "com.julienviet.protobuf.tests.core.support.basic";
+option java_outer_classname = "TestProto";
+
+// Message used for publishing to an address
+message SimpleMessage {
+  string string_field = 1;
+  bytes bytes_field = 2;
+  int32 int32_field = 3;
+  int64 int64_field = 4;
+  repeated string string_list_field = 5;
+  map<string, string> map_string_string = 6;
+  map<string, int32> map_string_int32 = 7;
+}
+
+message Recursive {
+  string string = 1;
+  repeated Recursive embedded = 2;
+}

@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package com.julienviet.protobuf.tests.core.oneof;
+
+option java_package = "com.julienviet.protobuf.tests.core.support.oneof";
+option java_outer_classname = "OneOfProto";
+
+message Container {
+  oneof fruit {
+    BananaMsg banana = 1;
+    AppleMsg apple = 2;
+    OrangeMsg orange = 3;
+  }
+  oneof scalar {
+    int32 integer = 4;
+    double double = 5;
+    string string = 6;
+  }
+}
+
+message BananaMsg {
+  int32 weight = 1;
+}
+message OrangeMsg {
+}
+message AppleMsg {
+}

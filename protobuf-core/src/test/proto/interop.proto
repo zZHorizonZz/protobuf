@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package com.julienviet.protobuf.tests.core.interop;
+
+import "com/julienviet/protobuf/extension.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+option java_package = "com.julienviet.protobuf.tests.core.support.interop";
+option java_outer_classname = "InteropProto";
+
+message Container {
+  google.protobuf.Struct struct = 1 [(com.julienviet.protobuf.type_interop) = false];
+  google.protobuf.Duration duration = 2 [(com.julienviet.protobuf.type_interop) = true];
+  google.protobuf.Timestamp timestamp = 3 [(com.julienviet.protobuf.type_interop) = true];
+}

@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package com.julienviet.protobuf.tests.core.json;
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/descriptor.proto";
+
+option java_package = "com.julienviet.protobuf.tests.core.support.json";
+option java_outer_classname = "JsonProto";
+
+message Container {
+  google.protobuf.Struct struct = 1;
+  google.protobuf.Value value = 2;
+  google.protobuf.ListValue list_value = 3;
+  google.protobuf.NullValue null_value = 4;
+  google.protobuf.Duration duration = 5;
+  google.protobuf.Timestamp timestamp = 6;
+  google.protobuf.DoubleValue doubleValue = 7;
+  google.protobuf.FloatValue floatValue = 8;
+  google.protobuf.Int64Value int64Value = 9;
+  google.protobuf.UInt64Value uint64Value = 10;
+  google.protobuf.Int32Value int32Value = 11;
+  google.protobuf.UInt32Value uint32Value = 12;
+  google.protobuf.BoolValue boolValue = 13;
+  google.protobuf.StringValue stringValue = 14;
+  google.protobuf.BytesValue bytesValue = 15;
+  google.protobuf.Any any = 16;
+  google.protobuf.FieldMask field_mask = 17;
+}
+
+message Repetition {
+  repeated google.protobuf.Struct struct = 1;
+  repeated google.protobuf.Value value = 2;
+  repeated google.protobuf.ListValue list_value = 3;
+  repeated google.protobuf.NullValue null_value = 4;
+  repeated google.protobuf.Duration duration = 5;
+  repeated google.protobuf.Timestamp timestamp = 6;
+  repeated google.protobuf.DoubleValue doubleValue = 7;
+  repeated google.protobuf.FloatValue floatValue = 8;
+  repeated google.protobuf.Int64Value int64Value = 9;
+  repeated google.protobuf.UInt64Value uint64Value = 10;
+  repeated google.protobuf.Int32Value int32Value = 11;
+  repeated google.protobuf.UInt32Value uint32Value = 12;
+  repeated google.protobuf.BoolValue boolValue = 13;
+  repeated google.protobuf.StringValue stringValue = 14;
+  repeated google.protobuf.BytesValue bytesValue = 15;
+}
+
+message Unpacked {
+  repeated fixed32 list_of_numbers = 1 [packed = false];
+  repeated string list_of_strings = 2 [packed = false];
+  repeated Unpacked list_of_embedded = 3 [packed = false];
+}

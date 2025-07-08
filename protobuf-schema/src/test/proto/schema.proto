@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package com.julienviet.protobuf.tests.schema;
+
+option java_package = "io.vertx.tests.protobuf.schema";
+option java_outer_classname = "Test";
+option java_multiple_files = true;

@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package com.julienviet.protobuf.tests.core.nesting;
+
+option java_package = "com.julienviet.protobuf.tests.core.support.nesting";
+option java_outer_classname = "NestingProto";
+
+message Container {
+  message NestedMessage1 {
+    message NestedMessage2 {
+      string value = 1;
+    }
+    enum NestedEnum2 {
+      constant_1 = 0;
+      constant_2 = 1;
+    }
+    NestedMessage2 nestedMessage = 1;
+    NestedEnum1 nestedEnum1 = 2;
+    NestedEnum2 nestedEnum2 = 3;
+  }
+  enum NestedEnum1 {
+    constant_1 = 0;
+    constant_2 = 1;
+  }
+  NestedMessage1 nestedMessage = 1;
+  NestedEnum1 nestedEnum = 2;
+}
+
+message Repeated {
+  message NestedMessage {
+    int32 val = 1;
+  }
+  repeated NestedMessage nestedMessages = 1;
+}

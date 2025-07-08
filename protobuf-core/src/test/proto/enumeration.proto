@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package com.julienviet.protobuf.tests.core.enumeration;
+
+option java_package = "com.julienviet.protobuf.tests.core.support.enumeration";
+option java_outer_classname = "EnumerationProto";
+
+enum EnumWithAliases {
+  option allow_alias = true;
+  ZERO = 0;
+  ONE = 1;
+  TWO = 2;
+  UNO = 1;
+  DOS = 2;
+}

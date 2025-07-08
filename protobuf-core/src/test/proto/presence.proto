@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package com.julienviet.protobuf.tests.core.presence;
+
+option java_package = "com.julienviet.protobuf.tests.core.support.presence";
+option java_outer_classname = "PresenceProto";
+
+message Default {
+  string string = 1;
+  bytes bytes = 2;
+  int32 int32 = 3;
+  int64 int64 = 4;
+  uint32 uint32 = 5;
+  uint64 uint64 = 6;
+  sint32 sint32 = 7;
+  sint64 sint64 = 8;
+  bool bool = 9;
+  Enumerated _enum = 10;
+  fixed64 fixed64 = 11;
+  sfixed64 sfixed64 = 12;
+  double _double = 13;
+  fixed32 fixed32 = 14;
+  sfixed32 sfixed32 = 15;
+  float _float = 16;
+}
+
+message Repeated {
+  repeated string string = 1;
+  repeated bytes bytes = 2;
+  repeated int32 int32 = 3;
+  repeated int64 int64 = 4;
+  repeated uint32 uint32 = 5;
+  repeated uint64 uint64 = 6;
+  repeated sint32 sint32 = 7;
+  repeated sint64 sint64 = 8;
+  repeated bool bool = 9;
+  repeated Enumerated _enum = 10;
+  repeated fixed64 fixed64 = 11;
+  repeated sfixed64 sfixed64 = 12;
+  repeated double _double = 13;
+  repeated fixed32 fixed32 = 14;
+  repeated sfixed32 sfixed32 = 15;
+  repeated float _float = 16;
+}
+
+message Optional {
+  optional string string = 1;
+  optional bytes bytes = 2;
+  optional int32 int32 = 3;
+  optional int64 int64 = 4;
+  optional uint32 uint32 = 5;
+  optional uint64 uint64 = 6;
+  optional sint32 sint32 = 7;
+  optional sint64 sint64 = 8;
+  optional bool bool = 9;
+  optional Enumerated _enum = 10;
+  optional fixed64 fixed64 = 11;
+  optional sfixed64 sfixed64 = 12;
+  optional double _double = 13;
+  optional fixed32 fixed32 = 14;
+  optional sfixed32 sfixed32 = 15;
+  optional float _float = 16;
+}
+
+enum Enumerated {
+  constant_0 = 0;
+  constant_1 = 1;
+}
