@@ -13,3 +13,12 @@ enum EnumWithAliases {
   UNO = 1;
   DOS = 2;
 }
+
+enum EnumWithNegativeValue {
+  ZERO_ = 0;
+  MINUS_ONE = -1;
+}
+
+message Container {
+  EnumWithNegativeValue enum_val = 1;
+}

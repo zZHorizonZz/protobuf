@@ -16,7 +16,14 @@
  */
 package com.julienviet.protobuf.tests.core;
 
+import com.julienviet.protobuf.core.ProtobufReader;
+import com.julienviet.protobuf.core.ProtobufWriter;
 import com.julienviet.protobuf.tests.core.support.enumeration.EnumLiteral;
+import com.julienviet.protobuf.tests.core.support.enumeration.Container;
+import com.julienviet.protobuf.tests.core.support.enumeration.EnumWithNegativeValue;
+import com.julienviet.protobuf.tests.core.support.enumeration.MessageLiteral;
+import com.julienviet.protobuf.tests.core.support.enumeration.ProtoReader;
+import com.julienviet.protobuf.tests.core.support.enumeration.ProtoWriter;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -30,5 +37,15 @@ public class EnumTest {
     assertEquals(2, EnumLiteral.EnumWithAliases.numberOf("TWO").getAsInt());
     assertEquals(1, EnumLiteral.EnumWithAliases.numberOf("UNO").getAsInt());
     assertEquals(2, EnumLiteral.EnumWithAliases.numberOf("DOS").getAsInt());
+  }
+
+  @Test
+  public void testEnumValueAsVarInt64() {
+    Container container = new Container();
+    container.setEnumVal(EnumWithNegativeValue.MINUS_ONE);
+    byte[] bytes = ProtobufWriter.encodeToByteArray(ProtoWriter.streamOf(container));
+    assertEquals(11, bytes.length);
+    container = ProtoReader.readContainer(ProtobufReader.readerStream(MessageLiteral.Container, bytes));
+    assertEquals(EnumWithNegativeValue.MINUS_ONE, container.getEnumVal());
   }
 }

@@ -82,7 +82,7 @@ public class ProtobufWriter {
 
     @Override
     public void visitEnum(Field field, int number) {
-      visitVarInt32(field, number);
+      visitVarInt64(field, number);
     }
 
     public void visitVarInt32(Field field, int v) {
@@ -267,7 +267,7 @@ public class ProtobufWriter {
 
     @Override
     public void visitEnum(Field field, int number) {
-      visitVarInt32(field, number);
+      visitVarInt64(field, number);
     }
 
     public void visitVarInt32(Field field, int v) {

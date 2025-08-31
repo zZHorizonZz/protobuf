@@ -33,6 +33,8 @@ import org.junit.Test;
 import java.io.StringWriter;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+
 public class ConformanceTest {
 
   private TypeRegistry typeRegistry;
@@ -109,9 +111,7 @@ public class ConformanceTest {
   public void testConformance() throws Exception {
 
     // Recommended.Proto3.ProtobufInput.ValidDataRepeated.ENUM.PackedInput.UnpackedOutput.ProtobufOutput
-    byte[] bytes = { -22, 18, 7, 8, -127, -68, -82, -50, -105, 9 };
-
-
+    byte[] bytes = { -102, 3, 32, 0, 1, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, 127, -127, -128, -128, -128, -128, -128, -128, -128, -128, 1 };
 
     // Expected
     // [-48, 41, 123,
@@ -138,17 +138,18 @@ public class ConformanceTest {
     TestMessagesProto3.TestAllTypesProto3 d = TestMessagesProto3.TestAllTypesProto3.parseFrom(bytes);
 
     byte[] expected = d.toByteArray();
-//    System.out.println(d);
 
     // repeatedUint64
 
     //    System.out.println("d = " + d);
     ProtobufReader.parse(MessageLiteral.TestAllTypesProto3, reader, bytes);
     TestAllTypesProto3 testMessage = (TestAllTypesProto3) reader.stack.pop();
-    List<TestAllTypesProto3.NestedEnum> a = testMessage.getUnpackedNestedEnum();
+    List<TestAllTypesProto3.NestedEnum> a = testMessage.getRepeatedNestedEnum();
 
     byte[] result = ProtobufWriter.encodeToByteArray(visitor -> {
       ProtoWriter.emit(testMessage, visitor);
     });
+
+    assertEquals(result.length, expected.length);
   }
 }

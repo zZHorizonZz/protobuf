@@ -1,1 +1,27 @@
-Recommended.Proto3.ValueRejectInfNumberValue.JsonOutput # Should have failed to serialize, but didn't.
+Recommended.Proto3.FieldMaskNumbersDontRoundTrip.JsonOutput # Should have failed to serialize, but didn't.
+Recommended.Proto3.FieldMaskPathsDontRoundTrip.JsonOutput # Should have failed to serialize, but didn't.
+Recommended.Proto3.FieldMaskTooManyUnderscore.JsonOutput # Should have failed to serialize, but didn't.
+Recommended.Proto3.JsonInput.DurationHas3FractionalDigits.Validator # JSON payload validation failed.
+Recommended.Proto3.JsonInput.DurationHas6FractionalDigits.Validator # JSON payload validation failed.
+Recommended.Proto3.JsonInput.DurationHasZeroFractionalDigit.Validator # JSON payload validation failed.
+Recommended.Proto3.JsonInput.FieldMaskInvalidCharacter # Should have failed to parse, but didn't.
+Recommended.Proto3.JsonInput.IgnoreUnknownEnumStringValueInMapPart.ProtobufOutput # Failed to parse input or produce output.
+Recommended.Proto3.JsonInput.IgnoreUnknownEnumStringValueInMapValue.ProtobufOutput # Failed to parse input or produce output.
+Recommended.Proto3.JsonInput.IgnoreUnknownEnumStringValueInOptionalField.ProtobufOutput # Failed to parse input or produce output.
+Recommended.Proto3.JsonInput.IgnoreUnknownEnumStringValueInRepeatedField.ProtobufOutput # Failed to parse input or produce output.
+Recommended.Proto3.JsonInput.IgnoreUnknownEnumStringValueInRepeatedPart.ProtobufOutput # Failed to parse input or produce output.
+Recommended.Proto3.JsonInput.StringFieldSurrogateInWrongOrder # Should have failed to parse, but didn't.
+Recommended.Proto3.JsonInput.StringFieldUnpairedHighSurrogate # Should have failed to parse, but didn't.
+Recommended.Proto3.JsonInput.StringFieldUnpairedLowSurrogate # Should have failed to parse, but didn't.
+Recommended.Proto3.JsonInput.TimestampHas3FractionalDigits.Validator # JSON payload validation failed.
+Recommended.Proto3.JsonInput.TimestampHas6FractionalDigits.Validator # JSON payload validation failed.
+Recommended.Proto3.JsonInput.TimestampHas9FractionalDigits.Validator # JSON payload validation failed.
+Recommended.Proto3.ProtobufInput.ValidDataRepeated.INT32.PackedInput.DefaultOutput.ProtobufOutput # Output was not equivalent to reference message: Expect: \372\001\054\000\271\140\271\140\271\140\377\377\377\377\007\200\200\200
+Recommended.Proto3.ProtobufInput.ValidDataRepeated.INT32.PackedInput.PackedOutput.ProtobufOutput # Output was not equivalent to reference message: Expect: \372\001\054\000\271\140\271\140\271\140\377\377\377\377\007\200\200\200
+Recommended.Proto3.ProtobufInput.ValidDataRepeated.INT32.PackedInput.UnpackedOutput.ProtobufOutput # Output was not equivalent to reference message: Expect: \310\005\000\310\005\271\140\310\005\271\140\310\005\271\140\310\005\377
+Recommended.Proto3.ProtobufInput.ValidDataRepeated.INT32.UnpackedInput.DefaultOutput.ProtobufOutput # Output was not equivalent to reference message: Expect: \372\001\054\000\271\140\271\140\271\140\377\377\377\377\007\200\200\200
+Recommended.Proto3.ProtobufInput.ValidDataRepeated.INT32.UnpackedInput.PackedOutput.ProtobufOutput # Output was not equivalent to reference message: Expect: \372\001\054\000\271\140\271\140\271\140\377\377\377\377\007\200\200\200
+Recommended.Proto3.ProtobufInput.ValidDataRepeated.INT32.UnpackedInput.UnpackedOutput.ProtobufOutput # Output was not equivalent to reference message: Expect: \310\005\000\310\005\271\140\310\005\271\140\310\005\271\140\310\005\377
+Recommended.Proto3.ProtobufInput.ValidDataScalarBinary.INT32[5].ProtobufOutput # Output was not equivalent to reference message: Expect: \010\200\200\200\200\370\377\377\377\377\001, but got: \010\200\200\200\
+Recommended.Proto3.ProtobufInput.ValidDataScalarBinary.INT32[7].ProtobufOutput # Output was not equivalent to reference message: Expect: \010\377\377\377\377\377\377\377\377\377\001, but got: \010\377\377\377\
+Recommended.Proto3.ProtobufInput.ValidDataScalarBinary.INT32[8].ProtobufOutput # Output was not equivalent to reference message: Expect: \010\377\377\377\377\377\377\377\377\377\001, but got: \010\377\377\377\
