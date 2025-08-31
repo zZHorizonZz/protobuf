@@ -1,0 +1,32 @@
+name: Docs
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'The GitHub ref to checkout'
+        required: true
+        type: string
+permissions:
+  contents: write
+jobs:
+  Test:
+    name: Build and publish Asciidoc
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.ref }}
+      - name: Install JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: 11
+          distribution: temurin
+      - name: Render asciidoc
+        run: mvn package -DskipTests -B
+      - name: Publish to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: protobuf-docs/target/docs
+          clean: true

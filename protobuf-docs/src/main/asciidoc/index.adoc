@@ -1,0 +1,51 @@
+= Protobuf
+:toc: left
+
+A playground to develop a modern Protobuf library for Java.
+
+Current features:
+
+- Java 11
+- Modular Java
+- Proto3
+- No runtime dependency on `com.google.protobuf:protobuf-java`, but relies on it at build time
+- The library comes with two flavors
+  - Code generation through Protoc plugin
+  - Java annotations supporting a subset of Protobuf as we speak
+
+== Basic usage
+
+=== Creating a message
+
+[source,java]
+----
+{@link com.julienviet.protobuf.docs.Examples#createMessage}
+----
+
+=== Writing a Protobuf message
+
+[source,java]
+----
+{@link com.julienviet.protobuf.docs.Examples#toProtobuf}
+----
+
+=== Reading a Protobuf message
+
+[source,java]
+----
+{@link com.julienviet.protobuf.docs.Examples#fromProtobuf}
+----
+
+=== Writing a ProtoJSON message
+
+[source,java]
+----
+{@link com.julienviet.protobuf.docs.Examples#toJson}
+----
+
+=== Reading a ProtoJSON message
+
+[source,java]
+----
+{@link com.julienviet.protobuf.docs.Examples#fromJson}
+----

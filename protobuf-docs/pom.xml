@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (C) 2025 Julien Viet
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.julienviet</groupId>
+    <artifactId>protobuf-parent</artifactId>
+    <version>0.0.2-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <artifactId>protobuf-docs</artifactId>
+  <version>0.0.2-SNAPSHOT</version>
+
+  <name>Protobuf Docs</name>
+
+  <properties>
+    <asciidoc.sources.dir>${project.basedir}/src/main/asciidoc</asciidoc.sources.dir>
+    <asciidoc.target.dir>${project.build.directory}/asciidoc</asciidoc.target.dir>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.julienviet</groupId>
+      <artifactId>protobuf-core</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-docgen-api</artifactId>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>default-compile</id>
+              <configuration>
+                <annotationProcessorPaths>
+                  <annotationProcessorPath>
+                    <groupId>io.vertx</groupId>
+                    <artifactId>vertx-docgen-processor</artifactId>
+                    <classifier>processor</classifier>
+                  </annotationProcessorPath>
+                </annotationProcessorPaths>
+                <compilerArgs>
+                  <!-- Configure the docgen processor -->
+                  <compilerArg>-Adocgen.source=${asciidoc.sources.dir}</compilerArg>
+                  <compilerArg>-Adocgen.output=${asciidoc.target.dir}</compilerArg>
+                  <compilerArg>-Amaven.groupId=${project.groupId}</compilerArg>
+                  <compilerArg>-Amaven.artifactId=${project.artifactId}</compilerArg>
+                  <compilerArg>-Amaven.version=${project.version}</compilerArg>
+                </compilerArgs>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>io.github.ascopes</groupId>
+        <artifactId>protobuf-maven-plugin</artifactId>
+        <configuration>
+          <jvmMavenPlugins>
+            <jvmMavenPlugin>
+              <groupId>com.julienviet</groupId>
+              <artifactId>protobuf-protoc-plugin</artifactId>
+              <version>${project.version}</version>
+            </jvmMavenPlugin>
+          </jvmMavenPlugins>
+        </configuration>
+        <executions>
+          <execution>
+            <id>generate-protobuf</id>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <javaEnabled>false</javaEnabled>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.asciidoctor</groupId>
+        <artifactId>asciidoctor-maven-plugin</artifactId>
+        <configuration>
+          <sourceDirectory>${project.build.directory}/asciidoc</sourceDirectory>
+          <sourceDocumentName>index.adoc</sourceDocumentName>
+          <outputDirectory>${project.build.directory}/docs</outputDirectory>
+          <attributes>
+            <toc>left</toc>
+          </attributes>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>process-asciidoc</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
