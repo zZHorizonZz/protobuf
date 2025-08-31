@@ -166,6 +166,7 @@ public class JsonTest {
     ));
     JsonObject res = writerProvider.encodeToObject(ProtoWriter.streamOf(r));
     JsonObject expected = new JsonObject().put("listValue", new JsonArray().add(new JsonArray().add("s")));
+    assertEquals(expected, res);
   }
 
   @Test
