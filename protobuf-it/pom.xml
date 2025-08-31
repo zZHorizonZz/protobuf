@@ -21,12 +21,12 @@
   <parent>
     <groupId>com.julienviet</groupId>
     <artifactId>protobuf-parent</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
   <artifactId>protobuf-it</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2-SNAPSHOT</version>
 
   <name>Protobuf IT</name>
 
