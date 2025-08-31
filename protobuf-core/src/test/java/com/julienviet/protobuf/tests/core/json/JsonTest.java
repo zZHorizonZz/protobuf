@@ -39,7 +39,9 @@ import com.google.protobuf.util.JsonFormat;
 import com.julienviet.protobuf.core.DecodeException;
 import com.julienviet.protobuf.core.EncodeException;
 import com.julienviet.protobuf.core.json.Json;
+import com.julienviet.protobuf.core.json.ProtoJsonWriter;
 import com.julienviet.protobuf.tests.core.RecordingVisitor;
+import com.julienviet.protobuf.tests.core.support.json.OneOf;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import com.julienviet.protobuf.core.json.ProtoJsonReader;
@@ -167,6 +169,18 @@ public class JsonTest {
     JsonObject res = writerProvider.encodeToObject(ProtoWriter.streamOf(r));
     JsonObject expected = new JsonObject().put("listValue", new JsonArray().add(new JsonArray().add("s")));
     assertEquals(expected, res);
+  }
+
+  @Test
+  public void testNullValue() {
+    String j = new JsonObject().put("nullValue", null).encode();
+    OneOf oneOf = ProtoReader.readOneOf(ProtoJsonReader.readStream(MessageLiteral.OneOf, j));
+    assertNotNull(oneOf.getNullValueOneOf());
+    assertTrue(oneOf.getNullValueOneOf().asNullValue().isPresent());
+    oneOf.setNullValueOneOf(OneOf.NullValueOneOf.ofNullValue(com.julienviet.protobuf.well_known_types.NullValue.NULL_VALUE));
+    JsonObject json = new JsonObject(ProtoJsonWriter.encode(ProtoWriter.streamOf(oneOf)));
+    assertTrue(json.containsKey("nullValue"));
+    assertNull(json.getValue("nullValue"));
   }
 
   @Test

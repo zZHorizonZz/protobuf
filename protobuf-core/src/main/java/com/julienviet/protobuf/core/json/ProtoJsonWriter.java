@@ -29,6 +29,7 @@ import com.julienviet.protobuf.well_known_types.BoolValue;
 import com.julienviet.protobuf.well_known_types.BytesValue;
 import com.julienviet.protobuf.well_known_types.DoubleValue;
 import com.julienviet.protobuf.well_known_types.Duration;
+import com.julienviet.protobuf.well_known_types.EnumLiteral;
 import com.julienviet.protobuf.well_known_types.FieldMask;
 import com.julienviet.protobuf.well_known_types.FloatValue;
 import com.julienviet.protobuf.well_known_types.Int32Value;
@@ -160,12 +161,16 @@ public class ProtoJsonWriter implements ProtoVisitor {
   }
 
   private void writeEnum(Field field, int number) throws IOException {
-    // Best effort
-    String name = ((EnumType) field.type()).nameOf(number);
-    if (name != null) {
-      writeString(name);
+    if (field.type() == EnumLiteral.NullValue) {
+      writeNull();
     } else {
-      writeInt(number);
+      // Best effort
+      String name = ((EnumType) field.type()).nameOf(number);
+      if (name != null) {
+        writeString(name);
+      } else {
+        writeInt(number);
+      }
     }
   }
 

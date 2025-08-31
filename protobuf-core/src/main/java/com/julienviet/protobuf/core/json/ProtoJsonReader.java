@@ -23,6 +23,7 @@ import com.julienviet.protobuf.lang.internal.Utils;
 import com.julienviet.protobuf.schema.EnumType;
 import com.julienviet.protobuf.schema.Field;
 import com.julienviet.protobuf.schema.MessageType;
+import com.julienviet.protobuf.well_known_types.EnumLiteral;
 import com.julienviet.protobuf.well_known_types.FieldLiteral;
 import com.julienviet.protobuf.well_known_types.MessageLiteral;
 
@@ -455,7 +456,9 @@ public class ProtoJsonReader {
 
   private void readAny(Field field) throws IOException, DecodeException {
     if (parser.currentToken() == JsonTokenKind.NULL) {
-      if (field.type() == MessageLiteral.Value) {
+      if (field.type() == EnumLiteral.NullValue) {
+        visitor.visitEnum(field, 0);
+      } else if (field.type() == MessageLiteral.Value) {
         visitor.enter(field);
         visitor.visitEnum(FieldLiteral.Value_null_value, 0);
         visitor.leave(field);

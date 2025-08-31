@@ -33,6 +33,12 @@ message Container {
   google.protobuf.FieldMask field_mask = 17;
 }
 
+message OneOf {
+  oneof nullValueOneOf {
+    google.protobuf.NullValue null_value = 1;
+  }
+}
+
 message Repetition {
   repeated google.protobuf.Struct struct = 1;
   repeated google.protobuf.Value value = 2;

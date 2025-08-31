@@ -73,7 +73,7 @@ public class ConformanceTest {
   @Test
   public void testJsonInput() throws Exception {
 
-    String json = "{\"optionalInt64\": 1}";
+    String json = "{\"oneofNullValue\": null}";
 
 /*
     json = "{\n" +
