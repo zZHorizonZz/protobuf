@@ -34,7 +34,7 @@ public class Jackson {
     TSFBuilder<?, ?> tsfBuilder = JsonFactory.builder();
     JsonFactory f = tsfBuilder.build();
     // Non-standard JSON but we allow C style comments in our JSON
-    f.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
+    f.configure(JsonParser.Feature.ALLOW_COMMENTS, false);
     factory = f;
   }
 

@@ -1,1 +1,1 @@
-Recommended.Proto3.JsonInput.BytesFieldBase64Url.JsonOutput # Failed to parse input or produce output.
+Recommended.Proto3.JsonInput.JsonWithComments # Should have failed to parse, but didn't.

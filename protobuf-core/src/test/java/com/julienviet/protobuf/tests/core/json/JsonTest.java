@@ -38,6 +38,8 @@ import com.google.protobuf.Value;
 import com.google.protobuf.util.JsonFormat;
 import com.julienviet.protobuf.core.DecodeException;
 import com.julienviet.protobuf.core.EncodeException;
+import com.julienviet.protobuf.core.json.Json;
+import com.julienviet.protobuf.tests.core.RecordingVisitor;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import com.julienviet.protobuf.core.json.ProtoJsonReader;
@@ -371,6 +373,18 @@ public class JsonTest {
   @Test
   public void testEmptyFieldMask() {
     // TODO
+  }
+
+  @Test
+  public void testComment() {
+    String json = "{ // comment\r\n }";
+    assertEquals(new JsonObject(), new JsonObject(json));
+    ProtoJsonReader reader = new ProtoJsonReader(json, new RecordingVisitor());
+    try {
+      reader.read(MessageLiteral.Container);
+      fail();
+    } catch (DecodeException expected) {
+    }
   }
 
   private <T> T read(MessageOrBuilder container, MessageType type) {
