@@ -1,0 +1,32 @@
+name: Release
+on:
+  release:
+    types: [published]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  deploy-artifact:
+    if: ${{ github.repository_owner == 'vietj'}} && false
+    runs-on: ubuntu-latest
+    env:
+      CENTRAL_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
+      CENTRAL_PASSWORD: ${{ secrets.CENTRAL_PASSWORD }}
+      MAVEN_GPG_KEY: ${{ secrets.GPG_SIGNING_KEY }}
+      MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.release.tag_name }}
+      - name: Install JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: 11
+          distribution: temurin
+          server-id: central
+          server-username: CENTRAL_USERNAME
+          server-password: CENTRAL_PASSWORD
+      - name: Maven deploy
+        run: mvn deploy -DskipTests -B -Dgpg.signer=bc
