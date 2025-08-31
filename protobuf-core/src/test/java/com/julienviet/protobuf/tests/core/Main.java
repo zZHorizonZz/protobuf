@@ -69,19 +69,9 @@ public class Main {
     TestAllTypesProto3 testMessage;
     String messageType = request.getMessageType();
 
-/*
-    ExtensionRegistry extensions = ExtensionRegistry.newInstance();
-    try {
-      createTestFile(messageType)
-        .getMethod("registerAllExtensions", ExtensionRegistry.class)
-        .invoke(null, extensions);
-    } catch (Exception e) {
-      throw new RuntimeException(e);
-    }
-*/
-
-    if (messageType.equals("protobuf_test_messages.proto3.TestAllTypesProto3")) {
-//          TestAllTypesProto3.
+    if (messageType.equals("protobuf_test_messages.proto3.TestAllTypesProto3")
+      && (request.getPayloadCase() == Conformance.ConformanceRequest.PayloadCase.PROTOBUF_PAYLOAD || request.getPayloadCase() == Conformance.ConformanceRequest.PayloadCase.JSON_PAYLOAD)
+      && (request.getRequestedOutputFormat() == Conformance.WireFormat.PROTOBUF || request.getRequestedOutputFormat() == Conformance.WireFormat.JSON)) {
       ProtoReader reader = new ProtoReader();
       try {
         switch (request.getPayloadCase()) {
@@ -102,18 +92,17 @@ public class Main {
       }
       testMessage = (TestAllTypesProto3) reader.stack.pop();
     } else {
-      throw new UnsupportedOperationException("Invalid " + messageType);
+      return Conformance.ConformanceResponse.newBuilder()
+        .setSkipped("Only proto3 tested")
+        .build();
     }
 
     switch (request.getRequestedOutputFormat()) {
-      case UNSPECIFIED:
-        throw new IllegalArgumentException("Unspecified output format.");
 
       case PROTOBUF: {
         byte[] result = ProtobufWriter.encodeToByteArray(visitor -> {
           ProtoWriter.emit(testMessage, visitor);
         });
-//        ByteString messageString = testMessage.toByteString();
         return Conformance.ConformanceResponse.newBuilder()
           .setProtobufPayload(ByteString.copyFrom(result))
           .build();
@@ -135,24 +124,7 @@ public class Main {
           .setJsonPayload(result)
           .build();
 
-//        try {
-//          return Conformance.ConformanceResponse.newBuilder()
-//            .setJsonPayload(
-//              JsonFormat.printer().usingTypeRegistry(typeRegistry).print(testMessage))
-//            .build();
-//        } catch (InvalidProtocolBufferException | IllegalArgumentException e) {
-//          return Conformance.ConformanceResponse.newBuilder()
-//            .setSerializeError(e.getMessage())
-//            .build();
-//        }
-
-      case TEXT_FORMAT:
-//        return Conformance.ConformanceResponse.newBuilder()
-//          .setTextPayload(TextFormat.printer().printToString(testMessage))
-//          .build();
-
-      default:
-      {
+      default: {
         throw new IllegalArgumentException("Unexpected request output.");
       }
     }
