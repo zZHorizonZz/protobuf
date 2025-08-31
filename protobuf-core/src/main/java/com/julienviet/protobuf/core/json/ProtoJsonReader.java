@@ -33,8 +33,13 @@ import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
+import java.util.ArrayDeque;
 import java.util.Base64;
+import java.util.Deque;
+import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.OptionalInt;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -186,6 +191,7 @@ public class ProtoJsonReader {
     if (!parser.hasToken(JsonTokenKind.START_OBJECT)) {
       throw new DecodeException("Unexpected token " + parser.currentToken());
     }
+    Set<Field> duplicateChecker = null;
     while (parser.nextToken() == JsonTokenKind.FIELD_NAME) {
       String key = parser.fieldName();
       Field field = type.fieldByJsonName(key);
@@ -200,6 +206,17 @@ public class ProtoJsonReader {
           throw new DecodeException("Unknown field " + key);
         }
       } else {
+        if (duplicateChecker == null) {
+          if (field instanceof Enum) {
+            // We can safely used this, as the implementation does type check the class
+            duplicateChecker = EnumSet.noneOf((Class) field.getClass());
+          } else {
+            duplicateChecker = new HashSet<>();
+          }
+        }
+        if (!duplicateChecker.add(field)) {
+          throw new DecodeException();
+        }
         parser.nextToken();
         readAny(field);
       }

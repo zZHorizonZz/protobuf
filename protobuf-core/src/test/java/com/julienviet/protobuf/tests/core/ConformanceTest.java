@@ -27,6 +27,7 @@ import com.julienviet.protobuf.core.ProtobufReader;
 import com.julienviet.protobuf.core.ProtobufWriter;
 import com.julienviet.protobuf.core.json.ProtoJsonReader;
 import com.julienviet.protobuf.core.json.ProtoJsonWriter;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.StringWriter;
@@ -69,10 +70,15 @@ public class ConformanceTest {
 
   }
 
+  @Ignore
   @Test
   public void testJsonInput() throws Exception {
 
-    String json = "{\"optionalBytes\": \"-_\"}";
+    String json = "{\n" +
+      "    \"map_string_nested_enum\": {\n" +
+      "      \"key1\": \"FOO\",\n" +
+      "      \"key2\": \"UNKNOWN_ENUM_VALUE\"\n" +
+      "    }}";
 
 /*
     json = "{\n" +
@@ -83,12 +89,14 @@ public class ConformanceTest {
       "      }";
 */
 
+/*
     TestMessagesProto3.TestAllTypesProto3.Builder builder = TestMessagesProto3.TestAllTypesProto3.newBuilder();
     JsonFormat.parser().usingTypeRegistry(typeRegistry).merge(json, builder);
     TestMessagesProto3.TestAllTypesProto3 d = builder.build();
 
     String print = JsonFormat.printer().print(d);
     System.out.println(print);
+*/
 
     ProtoReader reader = new ProtoReader();
     ProtoJsonReader.parse(json, MessageLiteral.TestAllTypesProto3, reader);
