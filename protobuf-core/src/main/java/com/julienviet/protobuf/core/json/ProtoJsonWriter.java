@@ -899,7 +899,7 @@ public class ProtoJsonWriter implements ProtoVisitor {
   }
 
   private void writeSFixed64(long v) throws IOException {
-    writeLong(v);
+    writeString(Long.toString(v));
   }
 
   private void writeFixed64(long v) throws IOException {
@@ -907,7 +907,7 @@ public class ProtoJsonWriter implements ProtoVisitor {
   }
 
   private void writeSInt64(long v) throws IOException {
-    writeLong(v);
+    writeString(Long.toString(v));
   }
 
   private void writeUInt64(long v) throws IOException {
@@ -915,7 +915,7 @@ public class ProtoJsonWriter implements ProtoVisitor {
   }
 
   private void writeInt64(long v) throws IOException {
-    writeLong(v);
+    writeString(Long.toString(v));
   }
 
   private void writeSInt32(int v) throws IOException {

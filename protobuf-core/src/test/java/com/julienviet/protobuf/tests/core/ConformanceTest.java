@@ -70,15 +70,10 @@ public class ConformanceTest {
 
   }
 
-  @Ignore
   @Test
   public void testJsonInput() throws Exception {
 
-    String json = "{\n" +
-      "    \"map_string_nested_enum\": {\n" +
-      "      \"key1\": \"FOO\",\n" +
-      "      \"key2\": \"UNKNOWN_ENUM_VALUE\"\n" +
-      "    }}";
+    String json = "{\"optionalInt64\": 1}";
 
 /*
     json = "{\n" +
@@ -89,14 +84,12 @@ public class ConformanceTest {
       "      }";
 */
 
-/*
     TestMessagesProto3.TestAllTypesProto3.Builder builder = TestMessagesProto3.TestAllTypesProto3.newBuilder();
     JsonFormat.parser().usingTypeRegistry(typeRegistry).merge(json, builder);
     TestMessagesProto3.TestAllTypesProto3 d = builder.build();
 
     String print = JsonFormat.printer().print(d);
     System.out.println(print);
-*/
 
     ProtoReader reader = new ProtoReader();
     ProtoJsonReader.parse(json, MessageLiteral.TestAllTypesProto3, reader);

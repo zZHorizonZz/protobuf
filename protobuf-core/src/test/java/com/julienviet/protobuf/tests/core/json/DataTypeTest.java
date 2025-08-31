@@ -22,6 +22,7 @@ import com.google.protobuf.MessageLite;
 import com.google.protobuf.MessageOrBuilder;
 import com.google.protobuf.util.JsonFormat;
 import com.julienviet.protobuf.core.DecodeException;
+import com.julienviet.protobuf.core.json.ProtoJsonWriter;
 import com.julienviet.protobuf.tests.core.support.datatypes.ScalarTypes;
 import io.vertx.core.json.JsonObject;
 import com.julienviet.protobuf.core.json.ProtoJsonReader;
@@ -182,6 +183,24 @@ public class DataTypeTest extends DataTypeTestBase {
     ProtoJsonReader.parse("{\"fixed32\":\"" + BigInteger.valueOf(0xFFFFFFFFL) + "\"}", SCALAR_TYPES, checker);
     assertTrue(checker.isEmpty());
     assertEquals(4294967295L, writerProvider.encodeToObject(visitor::apply).getValue("fixed32"));
+  }
+
+  @Test
+  public void testXInt64() {
+    RecordingVisitor visitor = new RecordingVisitor();
+    visitor.init(SCALAR_TYPES);
+    visitor.visitInt64(INT64, 1);
+    visitor.visitUInt64(UINT64, 1);
+    visitor.visitSInt64(SINT64, 1);
+    visitor.visitFixed64(FIXED64, 1);
+    visitor.visitSFixed64(SFIXED64, 1);
+    visitor.destroy();
+    JsonObject json = new JsonObject(ProtoJsonWriter.encode(visitor));
+    assertEquals("1", json.getValue("int64"));
+    assertEquals("1", json.getValue("uint64"));
+    assertEquals("1", json.getValue("sint64"));
+    assertEquals("1", json.getValue("fixed64"));
+    assertEquals("1", json.getValue("sfixed64"));
   }
 
   @Test
