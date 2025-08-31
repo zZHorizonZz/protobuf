@@ -70,6 +70,9 @@ public abstract class DataTypeTestBase {
     testFloat(-4);
     testFloat(Float.MAX_VALUE);
     testFloat(Float.MIN_VALUE);
+    testFloat(Float.NaN);
+    testFloat(Float.POSITIVE_INFINITY);
+    testFloat(Float.NEGATIVE_INFINITY);
   }
 
   private void testFloat(float value) throws Exception {
@@ -89,6 +92,9 @@ public abstract class DataTypeTestBase {
     testDouble(-4);
     testDouble(Double.MAX_VALUE);
     testDouble(Double.MIN_VALUE);
+    testDouble(Double.NaN);
+    testDouble(Double.POSITIVE_INFINITY);
+    testDouble(Double.NEGATIVE_INFINITY);
   }
 
   private void testDouble(double value) throws Exception {

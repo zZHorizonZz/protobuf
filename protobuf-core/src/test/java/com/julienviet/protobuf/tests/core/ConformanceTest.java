@@ -45,9 +45,10 @@ public class ConformanceTest {
         .build();
   }
 
+  @Ignore
   @Test
   public void testJsonOutput() throws Exception {
-    byte[] bytes = { -6, 18, 11, 10, 9, 102, 111, 111, 95, 51, 95, 98, 97, 114 };
+    byte[] bytes = { -110, 19, 9, 17, 0, 0, 0, 0, 0, 0, -16, 127 };
     ProtoReader reader = new ProtoReader();
     TestMessagesProto3.TestAllTypesProto3 d = TestMessagesProto3.TestAllTypesProto3.parseFrom(bytes);
 

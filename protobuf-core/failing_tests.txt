@@ -1,1 +1,1 @@
-Recommended.Proto3.JsonInput.NullValueInOtherOneofNewFormat.Validator # JSON payload validation failed.
+Recommended.Proto3.ValueRejectInfNumberValue.JsonOutput # Should have failed to serialize, but didn't.

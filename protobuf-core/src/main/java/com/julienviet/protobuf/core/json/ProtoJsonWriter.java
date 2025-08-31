@@ -427,7 +427,14 @@ public class ProtoJsonWriter implements ProtoVisitor {
         writeString(value.getKind().asStringValue().get());
         break;
       case NUMBER_VALUE:
-        writeDouble(value.getKind().asNumberValue().get());
+        Double number = value.getKind().asNumberValue().get();
+        if (Double.isInfinite(number)) {
+          throw new EncodeException("Value number cannot be infinite");
+        }
+        if (Double.isNaN(number)) {
+          throw new EncodeException("Value number cannot be NaN");
+        }
+        writeDouble(number);
         break;
       case STRUCT_VALUE:
         writeStruct(value.getKind().asStructValue().get());

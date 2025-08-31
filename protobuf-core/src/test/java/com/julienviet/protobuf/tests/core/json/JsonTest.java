@@ -123,6 +123,16 @@ public class JsonTest {
     assertTrue(testValue(Value.newBuilder().setBoolValue(true).build()).asBoolValue().get());
     testValue(Value.newBuilder().setStructValue(Struct.newBuilder().putFields("foo", Value.newBuilder().setStringValue("bar").build()).build()).build());
     testValue(Value.newBuilder().setListValue(ListValue.newBuilder().addValues(Value.newBuilder().setStringValue("bar").build()).build()).build());
+
+    for (double number : new double[]{ Double.NaN, Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY }) {
+      com.julienviet.protobuf.well_known_types.Value value = new com.julienviet.protobuf.well_known_types.Value().setKind(com.julienviet.protobuf.well_known_types.Value.Kind.ofNumberValue(number));
+      Container container = new Container().setValue(value);
+      try {
+        ProtoJsonWriter.encode(ProtoWriter.streamOf(container));
+        fail();
+      } catch (EncodeException expected) {
+      }
+    }
   }
 
   private com.julienviet.protobuf.well_known_types.Value.Kind<?> testValue(Value value) {
