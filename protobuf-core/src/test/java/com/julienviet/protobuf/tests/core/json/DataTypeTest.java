@@ -22,6 +22,7 @@ import com.google.protobuf.MessageLite;
 import com.google.protobuf.MessageOrBuilder;
 import com.google.protobuf.util.JsonFormat;
 import com.julienviet.protobuf.core.DecodeException;
+import com.julienviet.protobuf.tests.core.support.datatypes.ScalarTypes;
 import io.vertx.core.json.JsonObject;
 import com.julienviet.protobuf.core.json.ProtoJsonReader;
 import com.julienviet.protobuf.schema.Field;
@@ -42,6 +43,7 @@ import org.junit.runners.Parameterized;
 
 import java.math.BigInteger;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.Map;
 
@@ -410,5 +412,14 @@ public class DataTypeTest extends DataTypeTestBase {
     assertEquals(123, enumerated.number());
     JsonObject json = writerProvider.encodeToObject(v -> ProtoWriter.emit(c, v));
     assertEquals(123, json.getValue("Enum"));
+  }
+
+  @Test
+  public void testURLSafeBase64Bytes() {
+    String s = Base64.getUrlEncoder().encodeToString(new byte[]{-5});
+    ScalarTypes st = ProtoReader.readScalarTypes(ProtoJsonReader.readStream(MessageLiteral.ScalarTypes, "{\"bytes\":\"" + s + "\"}"));
+    byte[] bytes = st.getBytes();
+    assertEquals(1, bytes.length);
+    assertEquals(-5, bytes[0]);
   }
 }

@@ -174,7 +174,7 @@ public class ProtoJsonReader {
       readObject(messageType);
       remaining = parser.nextToken();
     } catch (IOException e) {
-      throw new DecodeException(e.getMessage(), e);
+      throw new DecodeException(e);
     }
     if (remaining != null) {
       throw new DecodeException("Unexpected trailing token");
@@ -216,7 +216,19 @@ public class ProtoJsonReader {
 
   private void readBytes(Field field) throws IOException, DecodeException {
     if (parser.currentToken() == JsonTokenKind.STRING) {
-      visitor.visitBytes(field, Base64.getDecoder().decode(parser.text()));
+      String text = parser.text();
+      byte[] decoded;
+      try {
+        try {
+          decoded = Base64.getDecoder().decode(text);
+        } catch (IllegalArgumentException e) {
+          // Try URL-safe
+          decoded = Base64.getUrlDecoder().decode(text);
+        }
+      } catch (Exception e) {
+        throw new DecodeException(e);
+      }
+      visitor.visitBytes(field, decoded);
     } else {
       throw new DecodeException("Unexpected token " + parser.currentToken());
     }

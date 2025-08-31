@@ -74,9 +74,7 @@ public class ConformanceTest {
   @Test
   public void testJsonInput() throws Exception {
 
-    String json = "{\n" +
-      "        \"repeatedListValue\": [[\"a\"]]\n" +
-      "      }";
+    String json = "{\"optionalBytes\": \"-_\"}";
 
 /*
     json = "{\n" +
