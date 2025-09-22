@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package com.julienviet.protobuf.tests.schema;
+package io.vertx.protobuf.tests.schema;
 
 option java_package = "io.vertx.tests.protobuf.schema";
 option java_outer_classname = "Test";

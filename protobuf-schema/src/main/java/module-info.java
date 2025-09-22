@@ -8,11 +8,11 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
  */
-module com.julienviet.protobuf.schema {
+module io.vertx.protobuf.schema {
 
   requires static com.google.protobuf;
   requires static com.google.protobuf.util;
 
-  exports com.julienviet.protobuf.schema;
+  exports io.vertx.protobuf.schema;
 
 }

@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package com.julienviet.protobuf.tests.core.presence;
+package io.vertx.protobuf.tests.core.presence;
 
-option java_package = "com.julienviet.protobuf.tests.core.support.presence";
+option java_package = "io.vertx.protobuf.tests.core.support.presence";
 option java_outer_classname = "PresenceProto";
 
 message Default {

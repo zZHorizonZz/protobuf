@@ -1,4 +1,4 @@
-= Protobuf
+= Vert.x Protobuf
 :toc: left
 
 A playground to develop a modern Protobuf library for Java.
@@ -19,33 +19,33 @@ Current features:
 
 [source,java]
 ----
-{@link com.julienviet.protobuf.docs.Examples#createMessage}
+{@link io.vertx.protobuf.docs.Examples#createMessage}
 ----
 
 === Writing a Protobuf message
 
 [source,java]
 ----
-{@link com.julienviet.protobuf.docs.Examples#toProtobuf}
+{@link io.vertx.protobuf.docs.Examples#toProtobuf}
 ----
 
 === Reading a Protobuf message
 
 [source,java]
 ----
-{@link com.julienviet.protobuf.docs.Examples#fromProtobuf}
+{@link io.vertx.protobuf.docs.Examples#fromProtobuf}
 ----
 
 === Writing a ProtoJSON message
 
 [source,java]
 ----
-{@link com.julienviet.protobuf.docs.Examples#toJson}
+{@link io.vertx.protobuf.docs.Examples#toJson}
 ----
 
 === Reading a ProtoJSON message
 
 [source,java]
 ----
-{@link com.julienviet.protobuf.docs.Examples#fromJson}
+{@link io.vertx.protobuf.docs.Examples#fromJson}
 ----

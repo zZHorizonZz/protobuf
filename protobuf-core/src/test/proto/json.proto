@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package com.julienviet.protobuf.tests.core.json;
+package io.vertx.protobuf.tests.core.json;
 
 import "google/protobuf/struct.proto";
 import "google/protobuf/duration.proto";
@@ -10,7 +10,7 @@ import "google/protobuf/any.proto";
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/descriptor.proto";
 
-option java_package = "com.julienviet.protobuf.tests.core.support.json";
+option java_package = "io.vertx.protobuf.tests.core.support.json";
 option java_outer_classname = "JsonProto";
 
 message Container {

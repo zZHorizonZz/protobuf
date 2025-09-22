@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package com.julienviet.protobuf.tests.core.basic;
+package io.vertx.protobuf.tests.core.basic;
 
 //
 //option java_multiple_files = true;
-option java_package = "com.julienviet.protobuf.tests.core.support.basic";
+option java_package = "io.vertx.protobuf.tests.core.support.basic";
 option java_outer_classname = "TestProto";
 
 // Message used for publishing to an address

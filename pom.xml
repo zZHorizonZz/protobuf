@@ -16,27 +16,26 @@
   ~
   --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
-
   <parent>
-    <groupId>com.julienviet</groupId>
-    <artifactId>parent</artifactId>
-    <version>1</version>
+    <groupId>io.vertx</groupId>
+    <artifactId>vertx5-parent</artifactId>
+    <version>12</version>
   </parent>
 
-  <artifactId>protobuf-parent</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
-
-  <name>Protobuf Parent</name>
-  <url>https://github.com/vietj/protobuf</url>
-  <description>Modern protobuf library for</description>
-
+  <modelVersion>4.0.0</modelVersion>
   <packaging>pom</packaging>
 
+  <artifactId>vertx-protobuf-aggregator</artifactId>
+  <version>5.1.0-SNAPSHOT</version>
+
+  <name>Protobuf Aggregator</name>
+  <url>https://github.com/eclipse-vertx/vertx-protobuf</url>
+  <description>Modern protobuf library</description>
+
   <scm>
-    <connection>scm:git:git@github.com:vietj/protobuf.git</connection>
-    <developerConnection>scm:git:git@github.com:vietj/protobuf.git</developerConnection>
-    <url>git@github.com:vietj/protobuf.git</url>
+    <connection>scm:git:git@github.com:eclipse-vertx/vertx-protobuf.git</connection>
+    <developerConnection>scm:git:git@github.com:eclipse-vertx/vertx-protobuf.git</developerConnection>
+    <url>git@github.com:eclipse-vertx/vertx-protobuf.git</url>
   </scm>
 
   <developers>
@@ -61,7 +60,7 @@
       <dependency>
         <groupId>io.vertx</groupId>
         <artifactId>vertx-dependencies</artifactId>
-        <version>5.0.3</version>
+        <version>${project.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -115,7 +114,7 @@
         <plugin>
           <groupId>io.github.ascopes</groupId>
           <artifactId>protobuf-maven-plugin</artifactId>
-          <version>3.6.1</version>
+          <version>3.9.1</version>
           <configuration>
             <protocVersion>${protoc.version}</protocVersion>
           </configuration>

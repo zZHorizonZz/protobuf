@@ -19,19 +19,17 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.julienviet</groupId>
-    <artifactId>protobuf-parent</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <groupId>io.vertx</groupId>
+    <artifactId>vertx-protobuf-aggregator</artifactId>
+    <version>5.1.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
-  <artifactId>protobuf-schema</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <artifactId>vertx-protobuf-schema</artifactId>
 
-  <name>Protobuf Schema</name>
+  <name>Vert.x Protobuf Schema</name>
 
   <dependencies>
-
     <dependency>
       <groupId>com.google.protobuf</groupId>
       <artifactId>protobuf-java</artifactId>
@@ -49,7 +47,6 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
-
   </dependencies>
 
   <build>

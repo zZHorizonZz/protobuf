@@ -1,5 +1,5 @@
-open module com.julienviet.tests {
+open module io.vertx.tests {
   requires junit;
-  requires com.julienviet.protobuf.it;
-  requires com.julienviet.protobuf.core;
+  requires io.vertx.protobuf.it;
+  requires io.vertx.protobuf.core;
 }

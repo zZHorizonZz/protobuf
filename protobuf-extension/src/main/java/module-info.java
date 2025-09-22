@@ -1,5 +1,5 @@
-module com.julienviet.protobuf.extension {
+module io.vertx.protobuf.extension {
   requires com.google.protobuf;
-  exports com.julienviet.protobuf.extension;
+  exports io.vertx.protobuf.extension;
 }
 

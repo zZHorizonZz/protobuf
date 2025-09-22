@@ -20,15 +20,15 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.julienviet</groupId>
-    <artifactId>protobuf-parent</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <groupId>io.vertx</groupId>
+    <artifactId>vertx-protobuf-aggregator</artifactId>
+    <version>5.1.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
-  <artifactId>protobuf-protoc-plugin</artifactId>
+  <artifactId>vertx-protobuf-protoc-plugin</artifactId>
 
-  <name>Protobuf Protoc Plugin</name>
+  <name>Vert.x Protobuf Protoc Plugin</name>
 
   <properties>
     <protoc.version>3.21.12</protoc.version>
@@ -36,13 +36,13 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.julienviet</groupId>
-      <artifactId>protobuf-extension</artifactId>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-protobuf-extension</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>com.julienviet</groupId>
-      <artifactId>protobuf-schema</artifactId>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-protobuf-schema</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
@@ -96,7 +96,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>com.julienviet.protobuf.plugin.Generator</mainClass>
+              <mainClass>io.vertx.protobuf.plugin.Generator</mainClass>
             </manifest>
           </archive>
         </configuration>

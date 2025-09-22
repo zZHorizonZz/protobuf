@@ -19,16 +19,15 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.julienviet</groupId>
-    <artifactId>protobuf-parent</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <groupId>io.vertx</groupId>
+    <artifactId>vertx-protobuf-aggregator</artifactId>
+    <version>5.1.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
-  <artifactId>protobuf-extension</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <artifactId>vertx-protobuf-extension</artifactId>
 
-  <name>Protobuf Extension</name>
+  <name>Vert.x Protobuf Extension</name>
 
   <dependencies>
     <dependency>
