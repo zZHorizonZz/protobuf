@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package com.julienviet.protobuf.tests.core.merge;
+package io.vertx.protobuf.tests.core.merge;
 
-option java_package = "com.julienviet.protobuf.tests.core.support.merge";
+option java_package = "io.vertx.protobuf.tests.core.support.merge";
 option java_outer_classname = "MergeProto";
 
 message Container {

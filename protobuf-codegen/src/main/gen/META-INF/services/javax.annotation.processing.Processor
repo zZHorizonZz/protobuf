@@ -14,4 +14,4 @@
 # limitations under the License.
 #
 #
-com.julienviet.protobuf.codegen.ProtoProcessor
+io.vertx.protobuf.codegen.ProtoProcessor

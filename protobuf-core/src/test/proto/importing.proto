@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package com.julienviet.protobuf.tests.core.importing;
+package io.vertx.protobuf.tests.core.importing;
 
 import "test.proto";
 import "google/protobuf/struct.proto";
@@ -14,12 +14,12 @@ import "google/protobuf/type.proto";
 // BUG - resolve later
 //import "google/protobuf/descriptor.proto";
 
-option java_package = "com.julienviet.protobuf.tests.core.support.importing";
+option java_package = "io.vertx.protobuf.tests.core.support.importing";
 option java_outer_classname = "ImportingProto";
 
 // Message used for publishing to an address
 message Container {
-  com.julienviet.protobuf.tests.core.basic.SimpleMessage simple_message = 1;
+  io.vertx.protobuf.tests.core.basic.SimpleMessage simple_message = 1;
   google.protobuf.Value value = 2;
   google.protobuf.Any any = 3;
   google.protobuf.SourceContext source_context = 4;

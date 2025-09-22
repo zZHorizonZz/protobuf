@@ -8,8 +8,8 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
  */
-module com.julienviet.protobuf.lang {
-  requires com.julienviet.protobuf.schema;
-  exports com.julienviet.protobuf.lang;
-  exports com.julienviet.protobuf.lang.internal to com.julienviet.protobuf.core, com.julienviet.tests;
+module io.vertx.protobuf.lang {
+  requires io.vertx.protobuf.schema;
+  exports io.vertx.protobuf.lang;
+  exports io.vertx.protobuf.lang.internal to io.vertx.protobuf.core, io.vertx.tests;
 }

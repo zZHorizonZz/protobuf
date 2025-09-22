@@ -1,6 +1,6 @@
-module com.julienviet.protobuf.it {
-  requires com.julienviet.protobuf.core;
-  requires com.julienviet.protobuf.schema;
-  requires com.julienviet.protobuf.lang;
-  exports com.julienviet.protobuf.it;
+module io.vertx.protobuf.it {
+  requires io.vertx.protobuf.core;
+  requires io.vertx.protobuf.schema;
+  requires io.vertx.protobuf.lang;
+  exports io.vertx.protobuf.it;
 }

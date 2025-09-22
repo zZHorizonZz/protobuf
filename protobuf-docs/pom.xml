@@ -19,16 +19,15 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.julienviet</groupId>
-    <artifactId>protobuf-parent</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <groupId>io.vertx</groupId>
+    <artifactId>vertx-protobuf-aggregator</artifactId>
+    <version>5.1.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
-  <artifactId>protobuf-docs</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <artifactId>vertx-protobuf-docs</artifactId>
 
-  <name>Protobuf Docs</name>
+  <name>Vert.x Protobuf Docs</name>
 
   <properties>
     <asciidoc.sources.dir>${project.basedir}/src/main/asciidoc</asciidoc.sources.dir>
@@ -37,8 +36,8 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.julienviet</groupId>
-      <artifactId>protobuf-core</artifactId>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-protobuf-core</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
@@ -85,8 +84,8 @@
         <configuration>
           <jvmMavenPlugins>
             <jvmMavenPlugin>
-              <groupId>com.julienviet</groupId>
-              <artifactId>protobuf-protoc-plugin</artifactId>
+              <groupId>io.vertx</groupId>
+              <artifactId>vertx-protobuf-protoc-plugin</artifactId>
               <version>${project.version}</version>
             </jvmMavenPlugin>
           </jvmMavenPlugins>

@@ -1,0 +1,33 @@
+/*
+ * Copyright (C) 2025 Julien Viet
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+package io.vertx.protobuf.tests.codegen.validation;
+
+import io.vertx.protobuf.lang.ProtoField;
+import io.vertx.protobuf.lang.ProtoMessage;
+import io.vertx.protobuf.schema.TypeID;
+
+@ProtoMessage
+public class InvalidProtoTypeInt32 {
+
+  @ProtoField(number = 1, type = TypeID.INT64)
+  public int getFoo() {
+    throw new UnsupportedOperationException();
+  }
+
+  public void setFoo(int s) {
+  }
+}

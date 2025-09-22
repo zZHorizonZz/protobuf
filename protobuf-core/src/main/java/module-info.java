@@ -8,18 +8,18 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
  */
-module com.julienviet.protobuf.core {
+module io.vertx.protobuf.core {
 
-  requires com.julienviet.protobuf.schema;
-  requires com.julienviet.protobuf.lang;
+  requires io.vertx.protobuf.schema;
+  requires io.vertx.protobuf.lang;
 
   // Won't work without but it should be capable of
   requires static com.fasterxml.jackson.core;
 
-  exports com.julienviet.protobuf.core.json;
-  exports com.julienviet.protobuf.well_known_types;
-  exports com.julienviet.protobuf.core.interop;
-  exports com.julienviet.protobuf.core.json.jackson;
-  exports com.julienviet.protobuf.core;
+  exports io.vertx.protobuf.core.json;
+  exports io.vertx.protobuf.well_known_types;
+  exports io.vertx.protobuf.core.interop;
+  exports io.vertx.protobuf.core.json.jackson;
+  exports io.vertx.protobuf.core;
 
 }

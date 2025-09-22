@@ -8,8 +8,8 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
  */
-open module com.julienviet.tests {
-  requires com.julienviet.protobuf.schema;
+open module io.vertx.tests {
+  requires io.vertx.protobuf.schema;
   requires junit;
   requires com.google.protobuf;
   requires com.google.protobuf.util;

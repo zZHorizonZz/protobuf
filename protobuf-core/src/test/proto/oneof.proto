@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package com.julienviet.protobuf.tests.core.oneof;
+package io.vertx.protobuf.tests.core.oneof;
 
-option java_package = "com.julienviet.protobuf.tests.core.support.oneof";
+option java_package = "io.vertx.protobuf.tests.core.support.oneof";
 option java_outer_classname = "OneOfProto";
 
 message Container {

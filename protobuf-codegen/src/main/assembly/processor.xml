@@ -27,7 +27,7 @@
       <outputDirectory>/</outputDirectory>
       <useProjectArtifact>true</useProjectArtifact>
       <includes>
-        <include>com.julienviet:protobuf-codegen</include>
+        <include>io.vertx:vertx-protobuf-codegen</include>
       </includes>
       <unpack>true</unpack>
     </dependencySet>

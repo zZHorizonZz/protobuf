@@ -8,10 +8,10 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
  */
-module com.julienviet.protobuf.docs {
+module io.vertx.protobuf.docs {
   requires static io.vertx.docgen;
-  requires com.julienviet.protobuf.lang;
-  requires com.julienviet.protobuf.schema;
-  requires com.julienviet.protobuf.core;
-  exports com.julienviet.protobuf.docs;
+  requires io.vertx.protobuf.lang;
+  requires io.vertx.protobuf.schema;
+  requires io.vertx.protobuf.core;
+  exports io.vertx.protobuf.docs;
 }
