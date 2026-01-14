@@ -33,7 +33,6 @@ import java.util.List;
  * <ul>
  *   <li>field_presence = LEGACY_REQUIRED</li>
  *   <li>json_format = LEGACY_BEST_EFFORT</li>
- *   <li>enforce_naming_style = STYLE_LEGACY (Edition 2024+)</li>
  * </ul>
  */
 public class FeatureValidator {
@@ -287,9 +286,6 @@ public class FeatureValidator {
         result.addError(new LegacyFeatureException("json_format", "LEGACY_BEST_EFFORT", location));
       }
     }
-    
-    // Note: Additional legacy features can be added here as needed
-    // For example, when enforce_naming_style = STYLE_LEGACY is detected in Edition 2024+
   }
 
   /**
