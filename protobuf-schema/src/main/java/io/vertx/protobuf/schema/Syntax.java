@@ -81,6 +81,16 @@ public enum Syntax {
   }
 
   /**
+   * Applies this syntax to a FileDescriptorProto builder.
+   */
+  public void applyTo(DescriptorProtos.FileDescriptorProto.Builder builder) {
+    builder.setSyntax(syntaxValue);
+    if (edition != null) {
+      builder.setEdition(edition);
+    }
+  }
+
+  /**
    * Returns the default syntax (proto3 for backward compatibility).
    */
   public static Syntax getDefault() {

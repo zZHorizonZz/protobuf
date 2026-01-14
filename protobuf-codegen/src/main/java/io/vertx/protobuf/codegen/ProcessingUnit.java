@@ -17,6 +17,7 @@
 package io.vertx.protobuf.codegen;
 
 import com.google.protobuf.DescriptorProtos;
+import io.vertx.protobuf.schema.Syntax;
 
 import java.util.HashSet;
 import java.util.LinkedHashMap;

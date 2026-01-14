@@ -106,4 +106,36 @@ public class SyntaxTest {
         .build();
     assertEquals(Syntax.PROTO3, Syntax.fromFileDescriptorProto(proto));
   }
+
+  @Test
+  public void testApplyToProto2() {
+    DescriptorProtos.FileDescriptorProto.Builder builder = DescriptorProtos.FileDescriptorProto.newBuilder();
+    Syntax.PROTO2.applyTo(builder);
+    assertEquals("proto2", builder.getSyntax());
+    assertFalse(builder.hasEdition());
+  }
+
+  @Test
+  public void testApplyToProto3() {
+    DescriptorProtos.FileDescriptorProto.Builder builder = DescriptorProtos.FileDescriptorProto.newBuilder();
+    Syntax.PROTO3.applyTo(builder);
+    assertEquals("proto3", builder.getSyntax());
+    assertFalse(builder.hasEdition());
+  }
+
+  @Test
+  public void testApplyToEdition2023() {
+    DescriptorProtos.FileDescriptorProto.Builder builder = DescriptorProtos.FileDescriptorProto.newBuilder();
+    Syntax.EDITION_2023.applyTo(builder);
+    assertEquals("editions", builder.getSyntax());
+    assertEquals(DescriptorProtos.Edition.EDITION_2023, builder.getEdition());
+  }
+
+  @Test
+  public void testApplyToEdition2024() {
+    DescriptorProtos.FileDescriptorProto.Builder builder = DescriptorProtos.FileDescriptorProto.newBuilder();
+    Syntax.EDITION_2024.applyTo(builder);
+    assertEquals("editions", builder.getSyntax());
+    assertEquals(DescriptorProtos.Edition.EDITION_2024, builder.getEdition());
+  }
 }
