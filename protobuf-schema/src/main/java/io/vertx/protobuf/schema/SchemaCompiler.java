@@ -16,6 +16,7 @@
  */
 package io.vertx.protobuf.schema;
 
+import com.google.protobuf.DescriptorProtos;
 import com.google.protobuf.Descriptors;
 
 import java.util.ArrayList;
@@ -47,8 +48,51 @@ public class SchemaCompiler {
       for (Descriptors.EnumValueDescriptor enumValueDesc : enumDesc.getValues()) {
         enumType.addValue(enumValueDesc.getNumber(), enumValueDesc.getName());
       }
+      
+      // Determine the enum behavior from the features
+      EnumBehavior behavior = determineEnumBehavior(enumDesc);
+      enumType.setBehavior(behavior);
     }
     return enumType;
+  }
+
+  /**
+   * Determines the enum behavior based on protobuf features.
+   * 
+   * <p>The behavior is determined by checking (in order):
+   * <ol>
+   *   <li>Enum-level features.enum_type option</li>
+   *   <li>File-level features.enum_type option</li>
+   *   <li>Default for the file's syntax/edition</li>
+   * </ol>
+   */
+  private EnumBehavior determineEnumBehavior(Descriptors.EnumDescriptor enumDesc) {
+    // Check enum-level feature
+    DescriptorProtos.EnumOptions enumOptions = enumDesc.toProto().getOptions();
+    if (enumOptions.hasFeatures() && enumOptions.getFeatures().hasEnumType()) {
+      return convertEnumType(enumOptions.getFeatures().getEnumType());
+    }
+    
+    // Check file-level feature
+    Descriptors.FileDescriptor file = enumDesc.getFile();
+    DescriptorProtos.FileOptions fileOptions = file.toProto().getOptions();
+    if (fileOptions.hasFeatures() && fileOptions.getFeatures().hasEnumType()) {
+      return convertEnumType(fileOptions.getFeatures().getEnumType());
+    }
+    
+    // Use default based on syntax
+    Syntax syntax = Syntax.fromFileDescriptor(file);
+    return EnumBehavior.defaultFor(syntax);
+  }
+
+  private EnumBehavior convertEnumType(DescriptorProtos.FeatureSet.EnumType enumType) {
+    switch (enumType) {
+      case CLOSED:
+        return EnumBehavior.CLOSED;
+      case OPEN:
+      default:
+        return EnumBehavior.OPEN;
+    }
   }
 
   public DefaultField compile(Descriptors.FieldDescriptor fieldDesc) {

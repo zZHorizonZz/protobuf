@@ -33,4 +33,16 @@ public interface EnumType extends Type {
 
   String nameOf(int number);
 
+  /**
+   * Returns the enum behavior (OPEN or CLOSED).
+   * 
+   * <p>OPEN enums parse out of range values into their fields directly.
+   * CLOSED enums store out of range values in the unknown field set.</p>
+   * 
+   * @return the enum behavior, defaults to OPEN
+   */
+  default EnumBehavior behavior() {
+    return EnumBehavior.OPEN;
+  }
+
 }
