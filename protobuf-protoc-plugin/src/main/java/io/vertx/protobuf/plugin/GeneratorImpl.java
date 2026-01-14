@@ -39,6 +39,8 @@ import io.vertx.protobuf.plugin.reader.ProtoReaderGenerator;
 import io.vertx.protobuf.plugin.schema.SchemaGenerator;
 import io.vertx.protobuf.plugin.writer.ProtoWriterGenerator;
 import io.vertx.protobuf.extension.ExtensionProto;
+import io.vertx.protobuf.schema.FeatureValidator;
+import io.vertx.protobuf.schema.FeatureValidator.ValidationResult;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -167,6 +169,13 @@ public class GeneratorImpl extends Generator {
         GeneratorException ex = new GeneratorException(e.getMessage());
         ex.initCause(e);
         throw ex;
+      }
+
+      // Validate features - reject legacy feature values in edition-based protos
+      FeatureValidator validator = new FeatureValidator();
+      ValidationResult validationResult = validator.validate(fileDesc);
+      if (validationResult.hasErrors()) {
+        throw new GeneratorException(validationResult.getErrors().get(0).getMessage());
       }
 
       String key = Utils.extractJavaPkgFqn(fileDesc);
