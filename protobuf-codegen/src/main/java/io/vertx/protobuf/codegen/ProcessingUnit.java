@@ -31,11 +31,15 @@ class ProcessingUnit {
   final DescriptorProtos.FileDescriptorProto.Builder fileBuilder;
   final Set<String> dependencies;
   final boolean stub;
+  final Syntax syntax;
 
   public ProcessingUnit(String javaPkg, String protoPkg, boolean stub) {
+    this(javaPkg, protoPkg, stub, Syntax.getDefault());
+  }
 
+  public ProcessingUnit(String javaPkg, String protoPkg, boolean stub, Syntax syntax) {
     DescriptorProtos.FileDescriptorProto.Builder builder = DescriptorProtos.FileDescriptorProto.newBuilder();
-    builder.setSyntax("proto3");
+    syntax.applyTo(builder);
     builder.setPackage(protoPkg);
     builder.setOptions(DescriptorProtos.FileOptions.newBuilder()
             .setJavaPackage(javaPkg)
@@ -48,5 +52,6 @@ class ProcessingUnit {
     this.dependencies = new HashSet<>();
     this.messages = new LinkedHashMap<>();
     this.stub = stub;
+    this.syntax = syntax;
   }
 }
