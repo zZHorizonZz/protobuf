@@ -39,10 +39,11 @@ import io.vertx.protobuf.plugin.reader.ProtoReaderGenerator;
 import io.vertx.protobuf.plugin.schema.SchemaGenerator;
 import io.vertx.protobuf.plugin.writer.ProtoWriterGenerator;
 import io.vertx.protobuf.extension.ExtensionProto;
+import io.vertx.protobuf.schema.FeatureValidator;
+import io.vertx.protobuf.schema.FeatureValidator.ValidationResult;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +56,10 @@ public class GeneratorImpl extends Generator {
 
   @Override
   protected List<PluginProtos.CodeGeneratorResponse.Feature> supportedFeatures() {
-    return Collections.singletonList(PluginProtos.CodeGeneratorResponse.Feature.FEATURE_PROTO3_OPTIONAL);
+    return Arrays.asList(
+      PluginProtos.CodeGeneratorResponse.Feature.FEATURE_PROTO3_OPTIONAL,
+      PluginProtos.CodeGeneratorResponse.Feature.FEATURE_SUPPORTS_EDITIONS
+    );
   }
 
   private static class Node {
@@ -165,6 +169,13 @@ public class GeneratorImpl extends Generator {
         GeneratorException ex = new GeneratorException(e.getMessage());
         ex.initCause(e);
         throw ex;
+      }
+
+      // Validate features - reject legacy feature values in edition-based protos
+      FeatureValidator validator = new FeatureValidator();
+      ValidationResult validationResult = validator.validate(fileDesc);
+      if (validationResult.hasErrors()) {
+        throw new GeneratorException(validationResult.getErrors().get(0).getMessage());
       }
 
       String key = Utils.extractJavaPkgFqn(fileDesc);

@@ -25,6 +25,7 @@ public class DefaultEnumType implements EnumType {
   private final String name;
   private final Map<String, Integer> numberByName = new HashMap<>();
   private final Map<Integer, String> nameByNumber = new HashMap<>();
+  private EnumBehavior behavior = EnumBehavior.OPEN;
 
   public DefaultEnumType(String name) {
     this.name = name;
@@ -43,6 +44,22 @@ public class DefaultEnumType implements EnumType {
     numberByName.put(name, number);
     nameByNumber.put(number, name);
     return this;
+  }
+
+  /**
+   * Sets the enum behavior (OPEN or CLOSED).
+   * 
+   * @param behavior the behavior to set
+   * @return this for fluent chaining
+   */
+  public DefaultEnumType setBehavior(EnumBehavior behavior) {
+    this.behavior = behavior;
+    return this;
+  }
+
+  @Override
+  public EnumBehavior behavior() {
+    return behavior;
   }
 
   @Override
