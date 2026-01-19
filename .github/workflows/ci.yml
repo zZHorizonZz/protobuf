@@ -43,8 +43,10 @@ jobs:
         with:
           java-version: 11
           distribution: temurin
+      - name: Build dependencies
+        run: mvn -s .github/maven-ci-settings.xml install -pl '!protobuf-conformance' -DskipTests -q -B -Dgpg.skip
       - name: Run conformance tests
-        run: mvn -s .github/maven-ci-settings.xml verify -pl protobuf-conformance -am -q -B -Dgpg.skip
+        run: mvn -s .github/maven-ci-settings.xml verify -pl protobuf-conformance -q -B -Dgpg.skip
   Deploy:
     if: ${{ github.repository_owner == 'vietj' && (github.event_name == 'push' || github.event_name == 'schedule') }}
     needs: Conformance
